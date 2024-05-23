@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Authorization Code</title>
+    <title>Authorization Redirect</title>
 </head>
 <body>
-    <h1>Authorization Code</h1>
-    <div id="auth-code"></div>
+    <h1>Processing Authorization Code...</h1>
 
     <script>
         // Função para obter o parâmetro 'code' da query string
@@ -19,11 +18,15 @@
         // Capturar o código de autorização
         let authCode = getQueryParam('code');
 
-        // Exibir o código de autorização na página
+        // Verificar se o código de autorização está presente
         if (authCode) {
-            document.getElementById('auth-code').textContent = 'Código de autorização: ' + authCode;
+            // Construir a URL de redirecionamento com o código de autorização
+            let redirectUrl = 'http://moterif.42web.io/?code=' + encodeURIComponent(authCode);
+            // Redirecionar para a URL com o código de autorização
+            window.location.href = redirectUrl;
         } else {
-            document.getElementById('auth-code').textContent = 'Código de autorização não encontrado.';
+            // Se o código não está presente, exiba uma mensagem de erro
+            document.body.innerHTML = '<h1>Código de autorização não encontrado.</h1>';
         }
     </script>
 </body>
