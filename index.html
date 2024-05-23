@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authorization Code</title>
+</head>
+<body>
+    <h1>Authorization Code</h1>
+    <div id="auth-code"></div>
+
+    <script>
+        // Função para obter o parâmetro 'code' da query string
+        function getQueryParam(param) {
+            let params = new URLSearchParams(window.location.search);
+            return params.get(param);
+        }
+
+        // Capturar o código de autorização
+        let authCode = getQueryParam('code');
+
+        // Exibir o código de autorização na página
+        if (authCode) {
+            document.getElementById('auth-code').textContent = 'Código de autorização: ' + authCode;
+        } else {
+            document.getElementById('auth-code').textContent = 'Código de autorização não encontrado.';
+        }
+    </script>
+</body>
+</html>
